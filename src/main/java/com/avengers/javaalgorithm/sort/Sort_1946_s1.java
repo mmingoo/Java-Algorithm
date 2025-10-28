@@ -1,7 +1,8 @@
-package com.avengers.javaalgorithm;
+package com.avengers.javaalgorithm.sort;
+
 import java.util.*;
 import java.io.*;
-public class test {
+public class Sort_1946_s1 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 

@@ -5,30 +5,41 @@ public class test {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int testCase = Integer.parseInt(br.readLine());
-        for(int i = 0; i<testCase; i++){
-            int applicantCnt = Integer.parseInt(br.readLine());
-            int[][] pr =new int[applicantCnt][2];
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int k = Integer.parseInt(st.nextToken());
+        int n = Integer.parseInt(st.nextToken());
+        long start = 0;
+        long end = 0;
+        long result = 0;
+        int[] lanArr = new int[k];
 
-
-            for(int j =0; j<applicantCnt; j++){
-                StringTokenizer st = new StringTokenizer(br.readLine());
-                pr[j][0] = Integer.parseInt(st.nextToken());
-                pr[j][1] = Integer.parseInt(st.nextToken());
-            }
-
-            Arrays.sort(pr, (a,b) -> a[0]-b[0]); // 내림차순
-            int count = 1;
-            int minInterviewRank = pr[0][1];
-
-            for(int j = 1; j < applicantCnt; j++){
-                if (pr[j][1] < minInterviewRank){
-                    count ++ ;
-                    minInterviewRank = pr[j][1];
-                }
-            }
-            System.out.println(count);
-
+        for(int i = 0; i<k; i++){
+            int num = Integer.parseInt(br.readLine());
+            lanArr[i] = num;
+            end = Math.max(end, num);
         }
+
+
+
+        while(start<=end){
+            long lanCnt = 0;
+            long mid = 0;
+
+            mid = (start+end)/2;
+
+            for(int i =0; i<k; i++){
+                lanCnt += (lanArr[i]/mid);
+            }
+
+            if(lanCnt >= n){
+                result = mid;
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        System.out.println(result);
+
     }
 }

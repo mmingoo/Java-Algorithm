@@ -2,7 +2,7 @@ package com.avengers.javaalgorithm.codingTest.kakao.intern;
 import java.util.*;
 import java.io.*;
 
-class kakao_blind_2020 {
+class kakao_blind_2020_1 {
     public int solution(String s) throws IOException {
         int n = s.length();
         int result = n;

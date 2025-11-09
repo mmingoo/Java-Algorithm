@@ -1,4 +1,4 @@
-package com.avengers.javaalgorithm.codingTest.kakao.intern;
+package com.avengers.javaalgorithm.codingTest.kakao;
 
 import java.util.*;
 import java.io.*;

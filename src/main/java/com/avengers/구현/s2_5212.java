@@ -1,12 +1,11 @@
-package com.avengers.javaalgorithm;
+package com.avengers.구현;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class JavaAlgorithmApplication {
-
+public class s2_5212 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -33,16 +32,15 @@ public class JavaAlgorithmApplication {
                         int x = i + di[k];
                         int y = j + dj[k];
 
-                        // 지도 밖인 경우에는 바다
+                        // 지도 밖인 경우에는 바다로 처리하고, 지도 안에서 .인 경우 cnt
                         if ((x == -1 || y == -1 || x == R || y == C) || map[x][y] == '.') {
                             cnt++;
                         }
                     }
 
                     if (cnt < 3) { // 3면 이하가 바다인 경우
-                        after[i][j] = 'X';
 
-                        minR = Math.min(minR, i); // 지도 출력 범위 갱신
+                        minR = Math.min(minR, i);
                         minC = Math.min(minC, j);
                         maxR = Math.max(maxR, i);
                         maxC = Math.max(maxC, j);
@@ -55,7 +53,7 @@ public class JavaAlgorithmApplication {
             }
         }
 
-        StringBuilder answer = new StringBuilder(); // 출력
+        StringBuilder answer = new StringBuilder();
         for (int i = minR; i <= maxR; i++) {
             for (int j = minC; j <= maxC; j++) {
                 answer.append(after[i][j]);

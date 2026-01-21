@@ -1,12 +1,11 @@
-package com.avengers.javaalgorithm;
+package com.avengers.구현;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class JavaAlgorithmApplication {
-
+public class s1_14503 {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -6,53 +6,53 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class s1_2615 {
+    static int[][] map = new int[19][19];
+    static int[][][] memo = new int[19][19][4];
+
+    static int dx[] = {-1,0,1,1};
+    static int dy[] = {1,1,1,0};
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int width = Integer.parseInt(st.nextToken());  // 가로
-        int height = Integer.parseInt(st.nextToken()); // 세로
-        int perimeter = 2 * (width + height);  // 전체 둘레
 
-        int storeCnt = Integer.parseInt(br.readLine());
-        int[] storePositions = new int[storeCnt];
 
-        // 상점 위치를 1차원 좌표로 변환
-        for (int i = 0; i < storeCnt; i++) {
-            st = new StringTokenizer(br.readLine());
-            int direction = Integer.parseInt(st.nextToken());
-            int distance = Integer.parseInt(st.nextToken());
-            storePositions[i] = getPosition(direction, distance, width, height);
+        for (int i = 0; i <19 ; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+
+            for(int j = 0; j<19; j ++){
+                map[i][j] = Integer.parseInt(st.nextToken());
+            }
+
+            System.out.println(findFive());
         }
 
-        // 동근이 위치
-        st = new StringTokenizer(br.readLine());
-        int direction = Integer.parseInt(st.nextToken());
-        int distance = Integer.parseInt(st.nextToken());
-        int dongPosition = getPosition(direction, distance, width, height);
-
-        int result = 0;
-        for (int storePos : storePositions) {
-            int directPath = Math.abs(dongPosition - storePos);
-            int aroundPath = perimeter - directPath;
-            result += Math.min(directPath, aroundPath);
-        }
-
-        System.out.println(result);
     }
 
-    // 방향과 거리를 1차원 좌표로 변환
-    private static int getPosition(int direction, int distance, int width, int height) {
-        switch (direction) {
-            case 1: // 북
-                return distance;
-            case 2: // 남
-                return width + height + (width - distance);
-            case 3: // 서
-                return 2 * width + height + (height - distance);
-            case 4: // 동
-                return width + distance;
-            default:
-                return 0;
+    private static String findFive() {
+        for (int i = 0; i <19 ; i++) {
+            for (int j = 0; j <19 ; j++) {
+                if (map[i][j] != 0){
+                    for (int k = 0; k <4 ; k++) {
+                        if(memo[i][j][k] == 0 && calc(i,j,k,map[i][j]) == 5){
+                            return map[i][j] + "\n" + i +" " + j;
+                        }
+
+                    }
+                }
+            }
         }
+        return "0";
     }
+
+    private static int calc(int i, int j, int k, int color) {
+        int nx = i + dx[k];
+        int ny = j + dy[k];
+
+        if(map[i][j] == color){
+            return memo[i][j][k] =  calc(nx,ny,k,color) + 1;
+        }
+        return 1;
+
+    }
+
+
 }

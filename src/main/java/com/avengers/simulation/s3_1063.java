@@ -1,4 +1,4 @@
-﻿package com.avengers.시뮬레이션;
+package com.avengers.simulation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
